@@ -128,7 +128,7 @@ postController.getAllPost = async (req, res) => {
         let query = { isDelete: false, isBlock: false };
 
         if (tag) {
-            query.tags = { $in: [tag] };
+            query.tags = { $regex: new RegExp(tag, "i") };
         }
 
         if (keyword) {
