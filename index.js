@@ -10,8 +10,10 @@ const io = new Server(httpServer, {
         origin: "*",
     },
 });
+app.use(cors());
 
 require("./utils/io")(io);
+
 httpServer.listen(SOCKET_PORT, () => {
     console.log("server listening on port", SOCKET_PORT);
 });
