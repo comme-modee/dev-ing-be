@@ -6,7 +6,6 @@ function ioFunction(io) {
 
         socket.on("join room", (roomId) => {
             socket.join(roomId);
-            // console.log(`User joined room: ${roomId}`);
         });
 
         socket.on("disconnect", () => {

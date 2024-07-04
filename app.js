@@ -1,12 +1,16 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const { createServer } = require("http");
+const { Server } = require("socket.io");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
 const indexRouter = require("./routes/index");
 
 require("dotenv").config();
-app.use(cors());
+app.use(cors({
+    origin: '*'
+}));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -20,6 +24,16 @@ mongoose
 
 app.use("/api", indexRouter);
 
-app.listen(PORT, () => {
-    console.log(`Server is running on ${PORT}`);
+const httpServer = createServer(app);
+
+const io = new Server(httpServer, {
+    cors: {
+        origin: "*",
+    },
+});
+
+require("./utils/io")(io);
+
+httpServer.listen(PORT, () => {
+    console.log("server listening on port", PORT);
 });
