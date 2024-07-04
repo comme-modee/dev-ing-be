@@ -6,8 +6,8 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
 const indexRouter = require("./routes/index");
-
 require("dotenv").config();
+
 app.use(cors({
     origin: '*'
 }));
@@ -32,7 +32,7 @@ const io = new Server(httpServer, {
         methods: ['GET', 'POST'],
         credentials: true
     },
-});
+}).listen(httpServer);
 
 require("./utils/io")(io);
 
