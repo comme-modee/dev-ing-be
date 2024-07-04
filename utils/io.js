@@ -2,7 +2,7 @@ const chatController = require("../controllers/chat.controller");
 
 function ioFunction(io) {
     io.on("connection", async (socket) => {
-        // console.log("connected : ", socket.id);
+        console.log("connected : ", socket.id);
 
         socket.on("join room", (roomId) => {
             socket.join(roomId);
