@@ -28,7 +28,9 @@ const httpServer = createServer(app);
 
 const io = new Server(httpServer, {
     cors: {
-        origin: "*",
+        origin: 'https://deving.netlify.app/',
+        methods: ['GET', 'POST'],
+        credentials: true
     },
 });
 
